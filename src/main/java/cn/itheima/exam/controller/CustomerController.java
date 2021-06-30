@@ -54,4 +54,8 @@ public class CustomerController {
     public String say(){
         return "yes";
     }
+    @RequestMapping(value = "/choose/girl")
+    public String fuck(){
+        return "ohh";
+    }
 }
