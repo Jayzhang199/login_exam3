@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itheima.exam.mapper.CustomerMapper">
+    <select id="queryCondition" parameterType="map" resultType="Customer">
+        SELECT c.cust_name,
+        c.cust_type,
+        c.cust_phone,
+        c.cust_address,
+        u.nickname cust_link_user
+        FROM s_user u,s_cust c WHERE
+        u.uid  = c.cid;
+       <if test="cust_username!=null and cust_username!=''">
+            AND c.cust_name LIKE CONCAT('%',#{cust_username},'%')
+        </if>
+        <if test="cust_type!=null and cust_type!=''">
+            AND c.cust_type = #{cust_type}
+        </if>
+
+    </select>
+
+    <select id="query" resultType="Customer">
+        SELECT c.cust_name,
+        c.cust_type,
+        c.cust_phone,
+        c.cust_address,
+        u.nickname cust_link_user
+        FROM s_user u,s_cust c WHERE
+        u.uid = c.cid;
+    </select>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FORM s_cust WHERE cid=#{id}
+    </delete>
+</mapper>
+
