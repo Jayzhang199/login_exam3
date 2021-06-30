@@ -50,5 +50,8 @@ public class CustomerController {
          customerService.delete(id);
          return "index";
     }
-
+    @RequestMapping(value = "/say/yes")
+    public String say(){
+        return "yes";
+    }
 }
